@@ -1,0 +1,54 @@
+/* =========================
+   LOVE LABAN THEME
+========================= */
+
+:root{
+
+    /* Colors */
+    --primary:#0046C7;
+    --primary-dark:#0036A1;
+    --secondary:#FFC928;
+    --secondary-dark:#E5B100;
+
+    --white:#FFFFFF;
+    --off-white:#F8FAFF;
+
+    --text:#1D2B4F;
+    --text-light:#5B6785;
+
+    --border:#DCE3F1;
+
+    /* Backgrounds */
+    --bg-light:#F5F8FF;
+    --card-bg:#FFFFFF;
+
+    /* Typography */
+    --font-primary:'Poppins',sans-serif;
+    --font-heading:'Playfair Display',serif;
+
+    /* Radius */
+    --radius-sm:8px;
+    --radius-md:12px;
+    --radius-lg:20px;
+    --radius-xl:30px;
+
+    /* Shadows */
+    --shadow-sm:
+    0 2px 10px rgba(0,0,0,.05);
+
+    --shadow-md:
+    0 8px 20px rgba(0,0,0,.08);
+
+    --shadow-lg:
+    0 15px 40px rgba(0,0,0,.12);
+
+    /* Transition */
+    --transition:.3s ease;
+
+    /* Container */
+    --container-width:1320px;
+
+    /* Header */
+    --header-height:90px;
+
+}

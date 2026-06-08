@@ -1,0 +1,62 @@
+.hero{
+    background:var(--primary);
+    min-height:950px;
+    display:flex;
+    align-items:center;
+    overflow:hidden;
+    position:relative;
+}
+
+.hero-wrapper{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    align-items:center;
+    gap:60px;
+}
+
+.hero-content h1{
+    font-size:82px;
+    line-height:1.1;
+    color:#fff;
+    margin-bottom:25px;
+}
+
+.hero-content h1 span{
+    color:var(--secondary);
+}
+
+.hero-content p{
+    color:#fff;
+    font-size:22px;
+    margin-bottom:40px;
+    max-width:500px;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:20px;
+}
+
+.hero-image{
+    position:relative;
+}
+
+.hero-image img{
+    width:100%;
+}
+
+.price-badge{
+    position:absolute;
+    top:60px;
+    right:0;
+    background:#fff;
+    padding:20px;
+    border-radius:50%;
+    width:130px;
+    height:130px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    font-weight:700;
+}

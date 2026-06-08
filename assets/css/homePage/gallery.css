@@ -1,0 +1,25 @@
+.gallery{
+    padding-top:100px;
+}
+
+.gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    gap:20px;
+}
+
+.gallery-grid img{
+    height:180px;
+    border-radius:15px;
+    object-fit:cover;
+    transition:.4s;
+}
+
+.gallery-grid img:hover{
+    transform:scale(1.05);
+}
+
+.gallery-btn{
+    text-align:center;
+    margin-top:40px;
+}
