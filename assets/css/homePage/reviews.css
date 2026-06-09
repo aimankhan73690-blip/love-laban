@@ -1,19 +1,21 @@
 .reviews{
-    padding-top:100px;
+    padding: 100px 0;
 }
 
 .reviews-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:25px;
+    display: flex;
+    gap: 24px;
+    overflow: hidden;
+    transition: transform .5s ease;
 }
 
 .review-card{
-    background:#fff;
-    border:1px solid #eee;
-    border-radius:18px;
-    padding:30px;
-    text-align:center;
+    flex: 0 0 calc((100% - 48px) / 4);
+    background: #fff;
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid #DCE8FF;
+    box-shadow: 0 5px 15px rgba(0,0,0,.05);
 }
 
 .stars{
@@ -40,4 +42,27 @@
     height:50px;
     border-radius:50%;
     object-fit:cover;
+}
+
+.review-dots{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:12px;
+    margin-top:40px;
+}
+
+.dot{
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    background:#DCE8FF;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.dot.active{
+    width:32px;
+    border-radius:30px;
+    background:#0D5BDB;
 }

@@ -1,233 +1,252 @@
 
-        document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
 
-            const track = document.querySelector(".dish-slider");
-            const cards = document.querySelectorAll(".dish-card");
+    const track = document.querySelector(".dish-slider");
+    const cards = document.querySelectorAll(".dish-card");
 
-            const nextBtn = document.getElementById("nextBtn");
-            const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const prevBtn = document.getElementById("prevBtn");
 
-            let currentIndex = 0;
+    let currentIndex = 0;
 
-            const visibleCards = 4.5;
-            const gap = 20;
+    const visibleCards = 4.5;
+    const gap = 20;
 
-            function getCardWidth() {
-                return cards[0].offsetWidth + gap;
+    function getCardWidth() {
+        return cards[0].offsetWidth + gap;
+    }
+
+    nextBtn.addEventListener("click", () => {
+
+        const maxIndex = cards.length - Math.floor(visibleCards);
+
+        if (currentIndex < maxIndex) {
+            currentIndex++;
+
+            track.style.transform =
+                `translateX(-${currentIndex * getCardWidth()}px)`;
+        }
+
+    });
+
+    prevBtn.addEventListener("click", () => {
+
+        if (currentIndex > 0) {
+            currentIndex--;
+
+            track.style.transform =
+                `translateX(-${currentIndex * getCardWidth()}px)`;
+        }
+
+    });
+
+});
+document.addEventListener("DOMContentLoaded", () => {
+
+    const track = document.querySelector(".dish-slider");
+    const cards = document.querySelectorAll(".dish-card");
+
+    const nextBtn = document.getElementById("nextBtn");
+    const prevBtn = document.getElementById("prevBtn");
+
+    let currentIndex = 0;
+
+    const visibleCards = 4.5;
+    const gap = 20;
+
+    function getCardWidth() {
+        return cards[0].offsetWidth + gap;
+    }
+
+    function updateSlider() {
+        track.style.transform =
+            `translateX(-${currentIndex * getCardWidth()}px)`;
+    }
+
+    // Next Button
+    nextBtn.addEventListener("click", () => {
+
+        const maxIndex = cards.length - Math.ceil(visibleCards);
+
+        if (currentIndex < maxIndex) {
+            currentIndex++;
+        } else {
+            currentIndex = 0;
+        }
+
+        updateSlider();
+    });
+
+    // Previous Button
+    prevBtn.addEventListener("click", () => {
+
+        const maxIndex = cards.length - Math.ceil(visibleCards);
+
+        if (currentIndex > 0) {
+            currentIndex--;
+        } else {
+            currentIndex = maxIndex;
+        }
+
+        updateSlider();
+    });
+
+    // AUTO SLIDE
+    let autoSlide = setInterval(() => {
+
+        const maxIndex = cards.length - Math.ceil(visibleCards);
+
+        if (currentIndex < maxIndex) {
+            currentIndex++;
+        } else {
+            currentIndex = 0;
+        }
+
+        updateSlider();
+
+    }, 3000); // 3 seconds
+
+    // Pause on hover
+    track.addEventListener("mouseenter", () => {
+        clearInterval(autoSlide);
+    });
+
+    track.addEventListener("mouseleave", () => {
+
+        autoSlide = setInterval(() => {
+
+            const maxIndex = cards.length - Math.ceil(visibleCards);
+
+            if (currentIndex < maxIndex) {
+                currentIndex++;
+            } else {
+                currentIndex = 0;
             }
 
-            nextBtn.addEventListener("click", () => {
+            updateSlider();
 
-                const maxIndex = cards.length - Math.floor(visibleCards);
+        }, 3000);
 
-                if (currentIndex < maxIndex) {
-                    currentIndex++;
+    });
 
-                    track.style.transform =
-                        `translateX(-${currentIndex * getCardWidth()}px)`;
-                }
+});
 
-            });
+document.addEventListener("DOMContentLoaded", () => {
 
-            prevBtn.addEventListener("click", () => {
+    const track = document.querySelector(".dish-slider");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
 
-                if (currentIndex > 0) {
-                    currentIndex--;
+    const visibleCards = 4;
+    const gap = 20;
 
-                    track.style.transform =
-                        `translateX(-${currentIndex * getCardWidth()}px)`;
-                }
+    let cards = [...document.querySelectorAll(".dish-card")];
 
-            });
+    // Clone first and last cards
+    const firstClones = cards.slice(0, visibleCards).map(card => card.cloneNode(true));
+    const lastClones = cards.slice(-visibleCards).map(card => card.cloneNode(true));
 
-        });
-        document.addEventListener("DOMContentLoaded", () => {
+    firstClones.forEach(clone => track.appendChild(clone));
 
-            const track = document.querySelector(".dish-slider");
-            const cards = document.querySelectorAll(".dish-card");
+    lastClones.reverse().forEach(clone => {
+        track.insertBefore(clone, track.firstChild);
+    });
 
-            const nextBtn = document.getElementById("nextBtn");
-            const prevBtn = document.getElementById("prevBtn");
+    cards = [...document.querySelectorAll(".dish-card")];
 
-            let currentIndex = 0;
+    let currentIndex = visibleCards;
 
-            const visibleCards = 4.5;
-            const gap = 20;
+    function getCardWidth() {
+        return cards[0].offsetWidth + gap;
+    }
 
-            function getCardWidth() {
-                return cards[0].offsetWidth + gap;
-            }
+    function updateSlider(animated = true) {
 
-            function updateSlider() {
-                track.style.transform =
-                    `translateX(-${currentIndex * getCardWidth()}px)`;
-            }
+        track.style.transition =
+            animated ? "transform .5s ease" : "none";
 
-            // Next Button
-            nextBtn.addEventListener("click", () => {
+        track.style.transform =
+            `translateX(-${currentIndex * getCardWidth()}px)`;
+    }
 
-                const maxIndex = cards.length - Math.ceil(visibleCards);
+    updateSlider(false);
 
-                if (currentIndex < maxIndex) {
-                    currentIndex++;
-                } else {
-                    currentIndex = 0;
-                }
+    // NEXT
+    nextBtn.addEventListener("click", () => {
+        currentIndex++;
+        updateSlider();
+    });
 
-                updateSlider();
-            });
+    // PREV
+    prevBtn.addEventListener("click", () => {
+        currentIndex--;
+        updateSlider();
+    });
 
-            // Previous Button
-            prevBtn.addEventListener("click", () => {
+    track.addEventListener("transitionend", () => {
 
-                const maxIndex = cards.length - Math.ceil(visibleCards);
+        const originalCount = cards.length - (visibleCards * 2);
 
-                if (currentIndex > 0) {
-                    currentIndex--;
-                } else {
-                    currentIndex = maxIndex;
-                }
+        // Jump from end clones
+        if (currentIndex >= originalCount + visibleCards) {
 
-                updateSlider();
-            });
-
-            // AUTO SLIDE
-            let autoSlide = setInterval(() => {
-
-                const maxIndex = cards.length - Math.ceil(visibleCards);
-
-                if (currentIndex < maxIndex) {
-                    currentIndex++;
-                } else {
-                    currentIndex = 0;
-                }
-
-                updateSlider();
-
-            }, 3000); // 3 seconds
-
-            // Pause on hover
-            track.addEventListener("mouseenter", () => {
-                clearInterval(autoSlide);
-            });
-
-            track.addEventListener("mouseleave", () => {
-
-                autoSlide = setInterval(() => {
-
-                    const maxIndex = cards.length - Math.ceil(visibleCards);
-
-                    if (currentIndex < maxIndex) {
-                        currentIndex++;
-                    } else {
-                        currentIndex = 0;
-                    }
-
-                    updateSlider();
-
-                }, 3000);
-
-            });
-
-        });
-
-        document.addEventListener("DOMContentLoaded", () => {
-
-            const track = document.querySelector(".dish-slider");
-            const prevBtn = document.getElementById("prevBtn");
-            const nextBtn = document.getElementById("nextBtn");
-
-            const visibleCards = 4;
-            const gap = 20;
-
-            let cards = [...document.querySelectorAll(".dish-card")];
-
-            // Clone first and last cards
-            const firstClones = cards.slice(0, visibleCards).map(card => card.cloneNode(true));
-            const lastClones = cards.slice(-visibleCards).map(card => card.cloneNode(true));
-
-            firstClones.forEach(clone => track.appendChild(clone));
-
-            lastClones.reverse().forEach(clone => {
-                track.insertBefore(clone, track.firstChild);
-            });
-
-            cards = [...document.querySelectorAll(".dish-card")];
-
-            let currentIndex = visibleCards;
-
-            function getCardWidth() {
-                return cards[0].offsetWidth + gap;
-            }
-
-            function updateSlider(animated = true) {
-
-                track.style.transition =
-                    animated ? "transform .5s ease" : "none";
-
-                track.style.transform =
-                    `translateX(-${currentIndex * getCardWidth()}px)`;
-            }
+            currentIndex = visibleCards;
 
             updateSlider(false);
+        }
 
-            // NEXT
-            nextBtn.addEventListener("click", () => {
-                currentIndex++;
-                updateSlider();
-            });
+        // Jump from start clones
+        if (currentIndex < visibleCards) {
 
-            // PREV
-            prevBtn.addEventListener("click", () => {
-                currentIndex--;
-                updateSlider();
-            });
+            currentIndex = originalCount + visibleCards - 1;
 
-            track.addEventListener("transitionend", () => {
+            updateSlider(false);
+        }
 
-                const originalCount = cards.length - (visibleCards * 2);
+    });
 
-                // Jump from end clones
-                if (currentIndex >= originalCount + visibleCards) {
+    // AUTO SLIDE
+    let autoSlide = setInterval(() => {
+        currentIndex++;
+        updateSlider();
+    }, 3000);
 
-                    currentIndex = visibleCards;
+    // Pause on hover
+    track.addEventListener("mouseenter", () => {
+        clearInterval(autoSlide);
+    });
 
-                    updateSlider(false);
-                }
+    track.addEventListener("mouseleave", () => {
 
-                // Jump from start clones
-                if (currentIndex < visibleCards) {
+        autoSlide = setInterval(() => {
+            currentIndex++;
+            updateSlider();
+        }, 3000);
 
-                    currentIndex = originalCount + visibleCards - 1;
+    });
 
-                    updateSlider(false);
-                }
+    // Responsive fix
+    window.addEventListener("resize", () => {
+        updateSlider(false);
+    });
 
-            });
+});
 
-            // AUTO SLIDE
-            let autoSlide = setInterval(() => {
-                currentIndex++;
-                updateSlider();
-            }, 3000);
+// reviews-javascript
+const dots = document.querySelectorAll(".dot");
 
-            // Pause on hover
-            track.addEventListener("mouseenter", () => {
-                clearInterval(autoSlide);
-            });
+dots.forEach((dot, index) => {
 
-            track.addEventListener("mouseleave", () => {
+    dot.addEventListener("click", () => {
 
-                autoSlide = setInterval(() => {
-                    currentIndex++;
-                    updateSlider();
-                }, 3000);
+        dots.forEach(d => d.classList.remove("active"));
 
-            });
+        dot.classList.add("active");
 
-            // Responsive fix
-            window.addEventListener("resize", () => {
-                updateSlider(false);
-            });
+        // Move slider here
+    });
 
-        });
+});
+
+
+
