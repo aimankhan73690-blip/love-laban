@@ -123,11 +123,16 @@ section{
     color:var(--primary);
     background:var(--white);
 }
+.btn-outline svg{
+    fill:currentColor;
+    transition:all 0.3s ease;}
 
 .btn-outline:hover{
-    background:var(--primary);
-    color:var(--white);
+    background:var(--secondary);
+    color:var(--text);
+    fill:var(--text);
 }
+
 
 /* ======================
    CARD
