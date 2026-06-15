@@ -62,7 +62,8 @@
 .banner-image img{
     width:100%;
     position:relative;
-    left: -4px;
-    top: -8px;
+    overflow:hidden;
+    /* left: -4px; */
+    /* top: -8px; */
    
 }

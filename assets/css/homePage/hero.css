@@ -1,10 +1,12 @@
 .hero{
     background:var(--primary);
-    min-height:950px;
+    min-height:700px;
     display:flex;
     align-items:center;
     overflow:hidden;
     position:relative;
+    border-radius:0 0 80px 80px;
+    margin-bottom:80px;
 }
 
 .hero-wrapper{
@@ -38,17 +40,19 @@
 }
 
 .hero-image{
+    margin-bottom:-220px;
     position:relative;
 }
 
 .hero-image img{
-    width:100%;
+    width:700px;
+    height: auto;
 }
 
 .price-badge{
     position:absolute;
-    top:60px;
-    right:0;
+    top:50px;
+    right: 60px;
     background:#fff;
     padding:20px;
     border-radius:50%;

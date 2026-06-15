@@ -11,6 +11,12 @@
     border-radius:25px;
     overflow:hidden;
     box-shadow:var(--shadow-md);
+    margin-top:-120px;
+}
+
+.container-f{
+    width:1450px;
+    margin:auto;
 }
 
 .feature-card{
@@ -24,9 +30,14 @@
 .icons{
     width:80px;
     height:80px;
+    min-width:80px; /* prevents shrinking */
+    display:flex;   /* important */
+    align-items:center;
+    justify-content:center;
     background-color:var(--primary);
     border-radius:50%;
-    padding:10px;
+    padding:18px;
+    box-sizing:border-box;
 }
 .feature-card:last-child{
     border-right:none;
