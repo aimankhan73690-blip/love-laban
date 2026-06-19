@@ -1,252 +1,121 @@
-
 document.addEventListener("DOMContentLoaded", () => {
-
     const track = document.querySelector(".dish-slider");
-    const cards = document.querySelectorAll(".dish-card");
+    const viewport = document.querySelector(".carousel-container");
+    const previousButton = document.getElementById("prevBtn");
+    const nextButton = document.getElementById("nextBtn");
 
-    const nextBtn = document.getElementById("nextBtn");
-    const prevBtn = document.getElementById("prevBtn");
-
-    let currentIndex = 0;
-
-    const visibleCards = 4.5;
-    const gap = 20;
-
-    function getCardWidth() {
-        return cards[0].offsetWidth + gap;
+    if (!track || !viewport || !previousButton || !nextButton) {
+        return;
     }
 
-    nextBtn.addEventListener("click", () => {
+    const originalCards = [...track.querySelectorAll(".dish-card")];
+    const cloneCount = Math.min(5, originalCards.length);
+    const transitionDuration = 650;
+    const autoSlideDelay = 4200;
 
-        const maxIndex = cards.length - Math.floor(visibleCards);
+    originalCards
+        .slice(-cloneCount)
+        .reverse()
+        .forEach(card => track.prepend(card.cloneNode(true)));
 
-        if (currentIndex < maxIndex) {
-            currentIndex++;
+    originalCards
+        .slice(0, cloneCount)
+        .forEach(card => track.append(card.cloneNode(true)));
 
-            track.style.transform =
-                `translateX(-${currentIndex * getCardWidth()}px)`;
+    let currentIndex = cloneCount;
+    let isAnimating = false;
+    let autoSlide;
+
+    function getStep() {
+        const card = track.querySelector(".dish-card");
+        const styles = window.getComputedStyle(track);
+        const gap = Number.parseFloat(styles.columnGap || styles.gap) || 0;
+
+        return card.getBoundingClientRect().width + gap;
+    }
+
+    function moveToCurrentCard(animate = true) {
+        track.style.transition = animate
+            ? `transform ${transitionDuration}ms cubic-bezier(.22, .61, .36, 1)`
+            : "none";
+
+        track.style.transform = `translate3d(-${currentIndex * getStep()}px, 0, 0)`;
+    }
+
+    function move(direction) {
+        if (isAnimating) {
+            return;
         }
 
+        isAnimating = true;
+        currentIndex += direction;
+        moveToCurrentCard();
+    }
+
+    function startAutoSlide() {
+        window.clearInterval(autoSlide);
+        autoSlide = window.setInterval(() => move(1), autoSlideDelay);
+    }
+
+    function stopAutoSlide() {
+        window.clearInterval(autoSlide);
+    }
+
+    nextButton.addEventListener("click", () => {
+        move(1);
+        startAutoSlide();
     });
 
-    prevBtn.addEventListener("click", () => {
+    previousButton.addEventListener("click", () => {
+        move(-1);
+        startAutoSlide();
+    });
 
-        if (currentIndex > 0) {
-            currentIndex--;
-
-            track.style.transform =
-                `translateX(-${currentIndex * getCardWidth()}px)`;
+    track.addEventListener("transitionend", event => {
+        if (event.propertyName !== "transform") {
+            return;
         }
 
+        if (currentIndex >= originalCards.length + cloneCount) {
+            currentIndex = cloneCount;
+            moveToCurrentCard(false);
+        } else if (currentIndex < cloneCount) {
+            currentIndex = originalCards.length + cloneCount - 1;
+            moveToCurrentCard(false);
+        }
+
+        isAnimating = false;
     });
 
-});
-document.addEventListener("DOMContentLoaded", () => {
+    viewport.addEventListener("mouseenter", stopAutoSlide);
+    viewport.addEventListener("mouseleave", startAutoSlide);
+    viewport.addEventListener("focusin", stopAutoSlide);
+    viewport.addEventListener("focusout", startAutoSlide);
 
-    const track = document.querySelector(".dish-slider");
-    const cards = document.querySelectorAll(".dish-card");
-
-    const nextBtn = document.getElementById("nextBtn");
-    const prevBtn = document.getElementById("prevBtn");
-
-    let currentIndex = 0;
-
-    const visibleCards = 4.5;
-    const gap = 20;
-
-    function getCardWidth() {
-        return cards[0].offsetWidth + gap;
-    }
-
-    function updateSlider() {
-        track.style.transform =
-            `translateX(-${currentIndex * getCardWidth()}px)`;
-    }
-
-    // Next Button
-    nextBtn.addEventListener("click", () => {
-
-        const maxIndex = cards.length - Math.ceil(visibleCards);
-
-        if (currentIndex < maxIndex) {
-            currentIndex++;
+    document.addEventListener("visibilitychange", () => {
+        if (document.hidden) {
+            stopAutoSlide();
         } else {
-            currentIndex = 0;
+            startAutoSlide();
         }
-
-        updateSlider();
     });
 
-    // Previous Button
-    prevBtn.addEventListener("click", () => {
-
-        const maxIndex = cards.length - Math.ceil(visibleCards);
-
-        if (currentIndex > 0) {
-            currentIndex--;
-        } else {
-            currentIndex = maxIndex;
-        }
-
-        updateSlider();
-    });
-
-    // AUTO SLIDE
-    let autoSlide = setInterval(() => {
-
-        const maxIndex = cards.length - Math.ceil(visibleCards);
-
-        if (currentIndex < maxIndex) {
-            currentIndex++;
-        } else {
-            currentIndex = 0;
-        }
-
-        updateSlider();
-
-    }, 3000); // 3 seconds
-
-    // Pause on hover
-    track.addEventListener("mouseenter", () => {
-        clearInterval(autoSlide);
-    });
-
-    track.addEventListener("mouseleave", () => {
-
-        autoSlide = setInterval(() => {
-
-            const maxIndex = cards.length - Math.ceil(visibleCards);
-
-            if (currentIndex < maxIndex) {
-                currentIndex++;
-            } else {
-                currentIndex = 0;
-            }
-
-            updateSlider();
-
-        }, 3000);
-
-    });
-
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    const track = document.querySelector(".dish-slider");
-    const prevBtn = document.getElementById("prevBtn");
-    const nextBtn = document.getElementById("nextBtn");
-
-    const visibleCards = 4;
-    const gap = 20;
-
-    let cards = [...document.querySelectorAll(".dish-card")];
-
-    // Clone first and last cards
-    const firstClones = cards.slice(0, visibleCards).map(card => card.cloneNode(true));
-    const lastClones = cards.slice(-visibleCards).map(card => card.cloneNode(true));
-
-    firstClones.forEach(clone => track.appendChild(clone));
-
-    lastClones.reverse().forEach(clone => {
-        track.insertBefore(clone, track.firstChild);
-    });
-
-    cards = [...document.querySelectorAll(".dish-card")];
-
-    let currentIndex = visibleCards;
-
-    function getCardWidth() {
-        return cards[0].offsetWidth + gap;
-    }
-
-    function updateSlider(animated = true) {
-
-        track.style.transition =
-            animated ? "transform .5s ease" : "none";
-
-        track.style.transform =
-            `translateX(-${currentIndex * getCardWidth()}px)`;
-    }
-
-    updateSlider(false);
-
-    // NEXT
-    nextBtn.addEventListener("click", () => {
-        currentIndex++;
-        updateSlider();
-    });
-
-    // PREV
-    prevBtn.addEventListener("click", () => {
-        currentIndex--;
-        updateSlider();
-    });
-
-    track.addEventListener("transitionend", () => {
-
-        const originalCount = cards.length - (visibleCards * 2);
-
-        // Jump from end clones
-        if (currentIndex >= originalCount + visibleCards) {
-
-            currentIndex = visibleCards;
-
-            updateSlider(false);
-        }
-
-        // Jump from start clones
-        if (currentIndex < visibleCards) {
-
-            currentIndex = originalCount + visibleCards - 1;
-
-            updateSlider(false);
-        }
-
-    });
-
-    // AUTO SLIDE
-    let autoSlide = setInterval(() => {
-        currentIndex++;
-        updateSlider();
-    }, 3000);
-
-    // Pause on hover
-    track.addEventListener("mouseenter", () => {
-        clearInterval(autoSlide);
-    });
-
-    track.addEventListener("mouseleave", () => {
-
-        autoSlide = setInterval(() => {
-            currentIndex++;
-            updateSlider();
-        }, 3000);
-
-    });
-
-    // Responsive fix
+    let resizeTimer;
     window.addEventListener("resize", () => {
-        updateSlider(false);
+        window.clearTimeout(resizeTimer);
+        resizeTimer = window.setTimeout(() => moveToCurrentCard(false), 120);
     });
 
+    moveToCurrentCard(false);
+    startAutoSlide();
 });
 
-// reviews-javascript
+// Review pagination state
 const dots = document.querySelectorAll(".dot");
 
-dots.forEach((dot, index) => {
-
+dots.forEach(dot => {
     dot.addEventListener("click", () => {
-
-        dots.forEach(d => d.classList.remove("active"));
-
+        dots.forEach(item => item.classList.remove("active"));
         dot.classList.add("active");
-
-        // Move slider here
     });
-
 });
-
-
-

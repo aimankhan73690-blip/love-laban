@@ -19,6 +19,15 @@ body{
     overflow-x:hidden;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+    font-family:var(--font-heading);
+}
+
 img{
     width:100%;
     display:block;
@@ -51,10 +60,10 @@ textarea{
 ====================== */
 
 .container{
-    width:100%;
-    max-width:var(--container-width);
+    width:min(var(--container-width), calc(100% - 30px));
+    max-width:none;
     margin:auto;
-    padding-inline:15px;
+    padding-inline:0;
 }
 
 /* ======================
@@ -105,8 +114,20 @@ section{
 
     font-size:15px;
     font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:.5px;
 
-    transition:var(--transition);
+    transition:
+        transform .25s ease,
+        background-color .3s ease,
+        border-color .3s ease,
+        color .3s ease,
+        box-shadow .3s ease;
+}
+
+.btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 18px rgba(29,43,79,.12);
 }
 
 .btn-primary{
@@ -306,33 +327,12 @@ section{
     .dish-slider{
         grid-template-columns:repeat(3,1fr);
     }
-
-    .gallery-grid{
-        grid-template-columns:repeat(3,1fr);
-    }
 }
 
 @media(max-width:992px){
 
-    .hero-wrapper{
-        grid-template-columns:1fr;
-        text-align:center;
-    }
-
-    .features-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .reviews-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
-
     .reservation-grid{
         grid-template-columns:1fr;
-    }
-
-    .footer-grid{
-        grid-template-columns:1fr 1fr;
     }
 
     .dish-slider{
@@ -346,30 +346,19 @@ section{
         display:none;
     }
 
-    .hero-content h1{
-        font-size:55px;
-    }
-
-    .features-grid,
-    .reviews-grid,
-    .dish-slider,
-    .gallery-grid{
+    .dish-slider{
         grid-template-columns:1fr;
     }
 
-    .footer-grid{
-        grid-template-columns:1fr;
-    }
+}
 
-    .order-banner{
-        grid-template-columns:1fr;
-    }
-
-    .reservation-form form{
-        grid-template-columns:1fr;
-    }
-
-    .reservation-form button{
-        grid-column:auto;
+@media(prefers-reduced-motion:reduce){
+    *,
+    *::before,
+    *::after{
+        scroll-behavior:auto !important;
+        transition-duration:.01ms !important;
+        animation-duration:.01ms !important;
+        animation-iteration-count:1 !important;
     }
 }

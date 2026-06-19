@@ -1,68 +1,130 @@
 .reviews{
-    padding: 100px 0;
+    padding:70px 0;
+    background:#f7f9fe;
+}
+
+.reviews-heading{
+    margin-bottom:42px;
+    text-align:center;
+}
+
+.section-subtitle-lines{
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:8px;
+}
+
+.section-subtitle-lines::before,
+.section-subtitle-lines::after{
+    content:"";
+    width:32px;
+    height:1px;
+    background:rgba(0,70,199,.3);
+}
+
+.reviews-heading .section-title{
+    font-size:clamp(34px, 3.4vw, 46px);
 }
 
 .reviews-grid{
-    display: flex;
-    gap: 24px;
-    overflow: hidden;
-    transition: transform .5s ease;
+    display:flex;
+    gap:22px;
+    overflow:hidden;
 }
 
 .review-card{
-    flex: 0 0 calc((100% - 48px) / 4);
-    background: #fff;
-    padding: 30px;
-    border-radius: 20px;
-    border: 1px solid #DCE8FF;
-    box-shadow: 0 5px 15px rgba(0,0,0,.05);
+    flex:0 0 calc((100% - 66px) / 4);
+    min-height:250px;
+    display:flex;
+    flex-direction:column;
+    padding:28px;
+    border:1px solid #e5ebf5;
+    border-radius:24px;
+    background:#fff;
+    box-shadow:0 8px 24px rgba(29,43,79,.045);
+    transition:transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+}
+
+.review-card:hover{
+    transform:translateY(-6px);
+    border-color:#d5e0f2;
+    box-shadow:0 16px 34px rgba(29,43,79,.09);
 }
 
 .stars{
-    color:#FFC928;
-    font-size:20px;
-    margin-bottom:20px;
+    margin-bottom:18px;
+    color:var(--secondary);
+    font-size:18px;
+    letter-spacing:3px;
 }
 
 .review-card p{
+    flex:1;
+    margin-bottom:24px;
     color:var(--text-light);
-    line-height:1.8;
-    margin-bottom:25px;
+    line-height:1.75;
 }
 
 .review-user{
     display:flex;
     align-items:center;
-    justify-content:center;
     gap:12px;
 }
 
 .review-user img{
-    width:50px;
-    height:50px;
+    width:48px;
+    height:48px;
+    border:2px solid #edf2fb;
     border-radius:50%;
     object-fit:cover;
+    transition:transform .35s ease;
+}
+
+.review-card:hover .review-user img{
+    transform:scale(1.08);
+}
+
+.review-user h4{
+    color:var(--primary);
+    font-size:15px;
 }
 
 .review-dots{
     display:flex;
     justify-content:center;
     align-items:center;
-    gap:12px;
-    margin-top:40px;
+    gap:9px;
+    margin-top:30px;
 }
 
 .dot{
-    width:12px;
-    height:12px;
+    width:9px;
+    height:9px;
     border-radius:50%;
-    background:#DCE8FF;
+    background:#cbd7ec;
     cursor:pointer;
     transition:.3s;
 }
 
 .dot.active{
-    width:32px;
-    border-radius:30px;
-    background:#0D5BDB;
+    width:28px;
+    border-radius:20px;
+    background:var(--primary);
+}
+
+@media(max-width:992px){
+    .review-card{
+        flex-basis:calc((100% - 22px) / 2);
+    }
+}
+
+@media(max-width:600px){
+    .reviews{
+        padding:52px 0;
+    }
+
+    .review-card{
+        flex-basis:100%;
+    }
 }

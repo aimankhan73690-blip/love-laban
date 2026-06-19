@@ -9,6 +9,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@500;600;700;800&display=swap"
         rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Encode+Sans:wght@100..900&display=swap" rel="stylesheet">
     <!-- <link rel="stylesheet" href="assets/css/styles.css">     -->
     <link rel="stylesheet" href="assets/css/homePage/features.css">
     <link rel="stylesheet" href="assets/css/homePage/footer.css">
@@ -34,7 +35,7 @@
             <nav class="navbar">
 
                 <a href="#" class="logo">
-                    <img src="assets/images/logo/image.png" alt="">
+                    <img src="assets/images/logo.png" alt="Love Laban">
                 </a>
 
                 <ul class="nav-links">
@@ -64,6 +65,15 @@
     <!-- HERO -->
     <section class="hero">
 
+        <div class="hero-decor" aria-hidden="true">
+            <span class="decor-ripple"></span>
+            <span class="decor-dot decor-dot-one"></span>
+            <span class="decor-dot decor-dot-two"></span>
+            <span class="decor-dot decor-dot-three"></span>
+            <span class="decor-ring decor-ring-left"></span>
+            <span class="decor-ring decor-ring-right"></span>
+        </div>
+
         <div class="container">
 
             <div class="hero-wrapper">
@@ -72,7 +82,10 @@
 
                     <h1>
                         Good Food.
-                        <span>Great Vibes.</span>
+                        <span class="hero-title-accent">
+                            Great Vibes.
+                            <img class="title-splash" src="assets/images/splash.svg" alt="" aria-hidden="true">
+                        </span>
                     </h1>
 
                     <p>
@@ -111,8 +124,13 @@
                     <img src="assets/images/bannerimage.png" alt="">
 
                     <div class="price-badge">
-                        Bomb Pizza
-                        ₹290
+                        <img class="price-badge-shape" src="assets/images/cloud.svg" alt="">
+
+                        <span class="price-badge-content">
+                            <b>BOMB</b>
+                            <small>PIZZA</small>
+                            <strong>₹290</strong>
+                        </span>
                     </div>
 
                 </div>
@@ -189,9 +207,9 @@
 
         <div class="container">
 
-            <div class="section-heading">
+            <div class="section-heading menu-heading">
 
-                <span class="section-subtitle">
+                <span class="section-subtitle menu-subtitle">
                     OUR MENU
                 </span>
 
@@ -199,11 +217,18 @@
                     Popular Dishes
                 </h2>
 
+                <div class="menu-controls">
+                    <button id="prevBtn" type="button" aria-label="Previous dishes">
+                        <i class="bi bi-arrow-left" aria-hidden="true"></i>
+                    </button>
+                    <button id="nextBtn" type="button" aria-label="Next dishes">
+                        <i class="bi bi-arrow-right" aria-hidden="true"></i>
+                    </button>
+                </div>
+
             </div>
 
             <div class="carousel-wrapper">
-                <button id="prevBtn">❮</button>
-
                 <div class="carousel-container">
                     <div class="dish-slider">
 
@@ -227,7 +252,8 @@
                                     A delightful mix of mini salankatia flavors.
                                 </p>
 
-                                <button class="btn btn-outline">
+                                <button class="btn btn-outline add-cart-btn">
+                                    <i class="bi bi-bag-plus" aria-hidden="true"></i>
                                     Add To Cart
                                 </button>
 
@@ -255,7 +281,8 @@
                                     Middle Eastern bread pudding with cream.
                                 </p>
 
-                                <button class="btn btn-outline">
+                                <button class="btn btn-outline add-cart-btn">
+                                    <i class="bi bi-bag-plus" aria-hidden="true"></i>
                                     Add To Cart
                                 </button>
 
@@ -282,7 +309,8 @@
                                     Rich, moist cake soaked in creamy milk.
                                 </p>
 
-                                <button class="btn btn-outline">
+                                <button class="btn btn-outline add-cart-btn">
+                                    <i class="bi bi-bag-plus" aria-hidden="true"></i>
                                     Add To Cart
                                 </button>
 
@@ -309,7 +337,8 @@
                                     A delightful mix of mini salankatia flavors.
                                 </p>
 
-                                <button class="btn btn-outline">
+                                <button class="btn btn-outline add-cart-btn">
+                                    <i class="bi bi-bag-plus" aria-hidden="true"></i>
                                     Add To Cart
                                 </button>
 
@@ -326,7 +355,7 @@
                             <div class="dish-content">
 
                                 <div class="dish-header">
-                                    <h3 style="font-size:16px;">Crispy Umm Ali</h3>
+                                    <h3>Crispy Umm Ali</h3>
                                     <span class="badge">
                                         ₹329
                                     </span>
@@ -336,7 +365,8 @@
                                     Flaky, crunchy and creamy dessert.
                                 </p>
 
-                                <button class="btn btn-outline">
+                                <button class="btn btn-outline add-cart-btn">
+                                    <i class="bi bi-bag-plus" aria-hidden="true"></i>
                                     Add To Cart
                                 </button>
 
@@ -363,7 +393,8 @@
                                     Delicious bites loaded with flavours.
                                 </p>
 
-                                <button class="btn btn-outline">
+                                <button class="btn btn-outline add-cart-btn">
+                                    <i class="bi bi-bag-plus" aria-hidden="true"></i>
                                     Add To Cart
                                 </button>
 
@@ -390,7 +421,8 @@
                                     Delicious bites loaded with flavours.
                                 </p>
 
-                                <button class="btn btn-outline">
+                                <button class="btn btn-outline add-cart-btn">
+                                    <i class="bi bi-bag-plus" aria-hidden="true"></i>
                                     Add To Cart
                                 </button>
 
@@ -401,7 +433,6 @@
 
                     </div>
                 </div>
-                <button id="nextBtn">❯</button>
             </div>
         </div>
 
@@ -417,9 +448,9 @@
                 <!-- FORM -->
                 <div class="reservation-form">
 
-                    <div class="section-heading">
+                    <div class="section-heading reservation-heading">
 
-                        <span class="section-subtitle">
+                        <span class="section-subtitle reservation-subtitle">
                             Reservation
                         </span>
 
@@ -431,38 +462,74 @@
 
                     <form>
 
-                        <input type="text" placeholder="Your Name" class="form-control">
+                        <label class="form-field">
+                            <span>Your Name</span>
+                            <input type="text" placeholder="Enter your name" class="form-control">
+                        </label>
 
-                        <input type="date" class="form-control">
+                        <label class="form-field">
+                            <span>Date</span>
+                            <input type="date" class="form-control">
+                        </label>
 
-                        <input type="email" placeholder="Email Address" class="form-control">
+                        <label class="form-field">
+                            <span>Email Address</span>
+                            <input type="email" placeholder="Enter your email" class="form-control">
+                        </label>
 
-                        <input type="time" class="form-control">
+                        <label class="form-field">
+                            <span>Time</span>
+                            <input type="time" class="form-control">
+                        </label>
 
-                        <input type="tel" placeholder="Phone Number" class="form-control">
+                        <label class="form-field">
+                            <span>Phone Number</span>
+                            <input type="tel" placeholder="Enter phone number" class="form-control">
+                        </label>
 
-                        <select class="form-control">
-                            <option>Guests</option>
-                        </select>
+                        <label class="form-field">
+                            <span>Guests</span>
+                            <select class="form-control">
+                                <option value="">Select guests</option>
+                                <option value="1">1 Guest</option>
+                                <option value="2">2 Guests</option>
+                                <option value="3">3 Guests</option>
+                                <option value="4">4 Guests</option>
+                                <option value="5+">5+ Guests</option>
+                            </select>
+                        </label>
 
-                        <button class="btn btn-primary">
+                        <button class="btn reservation-submit" type="submit">
+                            <i class="bi bi-calendar-check" aria-hidden="true"></i>
                             Book Now
                         </button>
 
                     </form>
 
+                    <div class="table-availability">
+                        <i class="bi bi-shield-check" aria-hidden="true"></i>
+                        <span>Available Tables Today!</span>
+                    </div>
+
                 </div>
 
                 <!-- ORDER BANNER -->
                 <div class="order-banner">
+                    <div class="order-banner-decor" aria-hidden="true">
+                        <span class="order-ripple"></span>
+                        <span class="order-dot order-dot-one"></span>
+                        <span class="order-dot order-dot-two"></span>
+                        <span class="order-ring"></span>
+                    </div>
+
                     <div class="banner-image">
-                        <img src="assets/images/image.png">
+                        <img src="assets/images/order-online-image.png" alt="Love Laban online order">
                     </div>
 
 
                     <div class="banner-content">
 
-                        <span class="section-subtitle">
+                        <span class="section-subtitle banner-subtitle">
                             ORDER ONLINE
                         </span>
 
@@ -474,20 +541,24 @@
                         <div class="banner-features">
 
                             <div class="feature">
+                                <i class="bi bi-lightning-charge-fill" aria-hidden="true"></i>
                                 Fast Delivery
                             </div>
 
                             <div class="feature">
+                                <i class="bi bi-patch-check-fill" aria-hidden="true"></i>
                                 Best Quality
                             </div>
 
                             <div class="feature">
+                                <i class="bi bi-bag-check-fill" aria-hidden="true"></i>
                                 Easy Ordering
                             </div>
 
                         </div>
 
-                        <a href="#" class="btn btn-primary">
+                        <a href="#" class="btn banner-order-btn">
+                            <i class="bi bi-bag" aria-hidden="true"></i>
                             Order Now
                         </a>
 
@@ -510,9 +581,9 @@
 
         <div class="container">
 
-            <div class="section-heading">
+            <div class="section-heading reviews-heading">
 
-                <span class="section-subtitle">
+                <span class="section-subtitle section-subtitle-lines">
                     CUSTOMER REVIEWS
                 </span>
 
@@ -677,9 +748,9 @@
 
         <div class="container">
 
-            <div class="section-heading">
+            <div class="section-heading gallery-heading">
 
-                <span class="section-subtitle">
+                <span class="section-subtitle section-subtitle-lines">
                     GALLERY
                 </span>
 
@@ -691,12 +762,12 @@
 
             <div class="gallery-grid">
 
-                <img src="assets/images/gallery/gallery1.jpg">
-                <img src="assets/images/gallery/gallery2.jpg">
-                <img src="assets/images/gallery/gallery3.jpg">
-                <img src="assets/images/gallery/gallery4.jpg">
-                <img src="assets/images/gallery/gallery5.jpg">
-                <img src="assets/images/gallery/gallery6.jpg">
+                <img src="assets/images/gallery/gallery1.jpg" alt="Love Laban delicacy">
+                <img src="assets/images/gallery/gallery2.jpg" alt="Love Laban delicacy">
+                <img src="assets/images/gallery/gallery3.jpg" alt="Love Laban delicacy">
+                <img src="assets/images/gallery/gallery4.jpg" alt="Love Laban delicacy">
+                <img src="assets/images/gallery/gallery5.jpg" alt="Love Laban delicacy">
+                <img src="assets/images/gallery/gallery6.jpg" alt="Love Laban delicacy">
 
             </div>
 
@@ -715,13 +786,17 @@
     <!-- FOOTER -->
     <footer class="footer">
 
+        <svg class="footer-top-shape" viewBox="0 0 1347 85" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M 0.00 42.38 L 0.00 -0.23 L 2.25 1.24 C34.29,22.18 59.48,34.37 84.42,41.01 C117.04,49.69 140.62,50.87 192.41,46.40 C214.14,44.53 225.83,43.96 234.50,44.37 C256.90,45.42 275.54,52.01 290.35,64.09 C294.67,67.62 300.30,72.19 302.85,74.25 C309.01,79.21 316.83,82.08 326.00,82.72 C336.73,83.48 343.07,81.79 358.71,74.04 C373.33,66.78 384.77,62.72 395.16,61.10 C399.25,60.46 569.22,59.93 874.25,59.61 L 1347.00 59.11 L 1347.00 72.05 L 1347.00 85.00 L 673.50 85.00 L 0.00 85.00 L 0.00 42.38 Z" />
+        </svg>
+
         <div class="container">
 
             <div class="footer-grid">
 
                 <div class="footer-about">
                     <div class="footer-about-img">
-                        <img src="assets/images/logo/image.png">
+                        <img src="assets/images/logo.png" alt="Love Laban">
                     </div>
 
                     <p>

@@ -24,7 +24,7 @@
 
     /* Typography */
     --font-primary:'Poppins',sans-serif;
-    --font-heading:'Playfair Display',serif;
+    --font-heading:'Encode Sans',sans-serif;
 
     /* Radius */
     --radius-sm:8px;
@@ -46,7 +46,7 @@
     --transition:.3s ease;
 
     /* Container */
-    --container-width:1320px;
+    --container-width:1450px;
 
     /* Header */
     --header-height:90px;

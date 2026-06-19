@@ -1,37 +1,109 @@
 .popular-dishes{
-    background:#fff;
-     position:relative;
+    position:relative;
     width:100%;
     margin:auto;
+    padding-block:30px;
+    background:#fff;
 }
 
-.section-heading{
+.features + .popular-dishes{
+    margin-top:-35px;
+}
+
+.popular-dishes + .reservation{
+    padding-top:45px;
+}
+
+.menu-heading{
+    position:relative;
+    margin-bottom:52px;
     text-align:center;
-    margin-bottom:60px;
+}
+
+.menu-subtitle{
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:8px;
+}
+
+.menu-subtitle::before,
+.menu-subtitle::after{
+    content:"";
+    width:32px;
+    height:1px;
+    background:rgba(0,70,199,.35);
+}
+
+.menu-controls{
+    position:absolute;
+    right:0;
+    bottom:4px;
+    display:flex;
+    gap:10px;
+}
+
+#prevBtn,
+#nextBtn{
+    width:46px;
+    height:46px;
+    display:grid;
+    place-items:center;
+    border:1px solid rgba(0,70,199,.32);
+    border-radius:50%;
+    background:transparent;
+    color:var(--primary);
+    font-size:20px;
+    transition:var(--transition);
+}
+
+#prevBtn:hover,
+#nextBtn:hover{
+    border-color:var(--primary);
+    background:rgba(0,70,199,.05);
+}
+
+.carousel-wrapper,
+.carousel-container{
+    position:relative;
+    width:100%;
+}
+
+.carousel-container{
+    overflow:hidden;
+    padding:8px 2px 16px;
 }
 
 .dish-slider{
-     display:flex;
+    display:flex;
+    align-items:stretch;
     gap:20px;
-    transition:transform .5s ease;
     will-change:transform;
+    backface-visibility:hidden;
 }
 
 .dish-card{
     flex:0 0 calc((100% - 80px) / 4.5);
-    min-height:350px;
+    min-height:390px;
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+    border:1px solid #e8edf6;
+    border-radius:28px;
     background:#fff;
-    border:1px solid #ddd;
-    border-radius:20px;
+    box-shadow:0 5px 18px rgba(29,43,79,.035);
+    transition:transform .3s ease, box-shadow .3s ease;
 }
 
 .dish-card:hover{
-    transform:translateY(-8px);
+    transform:translateY(-6px);
+    box-shadow:0 12px 28px rgba(29,43,79,.08);
 }
 
 .dish-image{
     height:220px;
     overflow:hidden;
+    border-radius:27px 27px 0 0;
 }
 
 .dish-image img{
@@ -40,17 +112,31 @@
 }
 
 .dish-content{
-    padding:20px;
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    padding:22px;
 }
 
 .dish-header{
     display:flex;
-    justify-content:space-between;
     align-items:center;
-    margin-bottom:15px;
+    justify-content:space-between;
+    gap:12px;
+    margin-bottom:13px;
 }
 
 .dish-content h3{
+    color:var(--primary);
+    font-size:18px;
+    line-height:1.25;
+}
+
+.dish-content .badge{
+    flex-shrink:0;
+    padding:6px 11px;
+    border:1px solid rgba(0,70,199,.25);
+    background:transparent;
     color:var(--primary);
 }
 
@@ -60,80 +146,64 @@
     line-height:1.6;
 }
 
-
-
-
-
-/* .carousel-container{
-    overflow:hidden;
-}
-
-.carousel-track{
-    display:flex;
-    gap:20px;
-    transition:transform .5s ease;
-} */
-
-.carousel-container{
-    overflow:hidden;
+.dish-content .add-cart-btn{
     width:100%;
+    margin-top:auto;
+    min-height:42px;
+    padding:10px 16px;
+    border-width:1px;
+    border-color:rgba(0,70,199,.28);
+    border-radius:10px;
+    font-size:13px;
 }
 
-.dish-slider{
-    display:flex;
-    gap:20px;
-    transition:transform .5s ease;
-    will-change:transform;
-}
-
-
-
-.carousel-wrapper{
-    position:relative;
-    width:100%;
-}
-
-
-.carousel-track{
-    display:flex;
-    gap:20px;
-    transition:transform .4s ease;
-}
-
-.food-card{
-    flex:0 0 calc((100% - 80px) / 4.5);
-    min-height:350px;
-    background:#fff;
-    border:1px solid #ddd;
-    border-radius:20px;
-}
-
-/* .carousel-wrapper{
-    position:relative;
-} */
-
-#prevBtn,
-#nextBtn{
-    position:absolute;
-    top:50%;
-    transform:translateY(-50%);
-    z-index:10;
-
-    width:50px;
-    height:50px;
-
-    border:none;
-    border-radius:50%;
-
-    background:#0D5BDB;
+.dish-content .add-cart-btn:hover{
+    border-color:var(--primary);
+    background:var(--primary);
     color:#fff;
-    cursor:pointer;
 }
 
-#prevBtn{
-    left:-90px;
+.dish-content .add-cart-btn i{
+    font-size:16px;
+    line-height:1;
 }
 
-#nextBtn{
-    right:-90px;
+@media(max-width:992px){
+    .menu-controls{
+        position:static;
+        justify-content:center;
+        margin-top:18px;
+    }
+}
+
+@media(max-width:600px){
+    .popular-dishes{
+        padding-block:32px;
+    }
+
+    .features + .popular-dishes{
+        margin-top:-10px;
+    }
+
+    .popular-dishes + .reservation{
+        padding-top:42px;
+    }
+
+    .menu-heading{
+        margin-bottom:36px;
+    }
+
+    #prevBtn,
+    #nextBtn{
+        width:42px;
+        height:42px;
+    }
+
+    .dish-card{
+        border-radius:24px;
+    }
+
+    .dish-image{
+        border-radius:23px 23px 0 0;
+    }
 }

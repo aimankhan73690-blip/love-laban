@@ -8,7 +8,7 @@
 }
 
 .container-h{
-    width:1450px;
+    width:min(var(--container-width), calc(100% - 30px));
     margin:auto;
 }
 .navbar{
